@@ -1,0 +1,4 @@
+jkshell
+test_read_cmd
+test_trim_trailing_whitespaces
+*.o
