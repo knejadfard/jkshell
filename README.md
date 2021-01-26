@@ -1,39 +1,32 @@
 # JKShell Project Design Detail
-For this project, we are asked to improve upon a previously completed project.
-In the previous project, a customized shell was created to support a number of
-internally-handled commands such as "path", "path +", "path -", and "quit", along
-with arbitrary externally-handled commands.
-In this assignment, we are asked to support the execution of pipelines, input and
-output file redirection.
+This project was originally written as a school project.
 
-In order to implement the requested features specified by this assignment, the
-following design choices have been made:
+JKShell is a very basic shell written in C and supports a number of internally-handled commands
+such as `path`, `path +`, `path -`, and `quit`, as well as arbitrary externally-handled commands.
 
+Pipes, input and output file redirection are supported.
+
+The following are some of the design decisions that were made when writing JKShell. Please don't
+judge, some of these decisions were made past 12am during the week and I was working full time :)
 - Each command given by user (either a single command or a pipeline of commands)
 is considered as a group. Groups are separated by '|' characters.
-
 - It is expected that '|' characters are surrounded by space characters. Otherwise,
 the parsing algorithm will not be able to correctly parse the commands and
 identify the groups.
-
-- '<' and '>' characters are also expected to be surrounded by space characters.
-
-- When using '>' to redirect the output of a command to a file, the file will be
+- `<` and `>` characters are also expected to be surrounded by space characters.
+- When using `>` to redirect the output of a command to a file, the file will be
  created if it does not exist, and it will be truncated with the new content.
-
-- There should not be any file redirection (usage of '<' or '>') in middle of a
+- There should not be any file redirection (usage of `<` or `>`) in middle of a
  pipeline. For example, the following command is illegal:
 ```
 cmd1 | cmd2 < file | cmd3
 ```
-
 - If mixing pipes and file redirection, it is only acceptable to have file input
 for the first command group, and file output for the last command group. For
 example, the following is considered good form:
 ```
 cmd1 < file1 | cmd2 | cmd3 > file2
 ```
-
 Which means, file1 is going to be redirected to cmd1, then the output of cmd1
 will be piped to cmd2, then the output of cmd2 is piped to cmd3, and then finally,
 the output of cmd3 will be redirected to file2.
