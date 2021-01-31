@@ -1,8 +1,6 @@
-# JKShell Project Design Detail
-This project was originally written as a school project.
-
-JKShell is a very basic shell written in C and supports a number of internally-handled commands
-such as `path`, `path +`, `path -`, and `quit`, as well as arbitrary externally-handled commands.
+# JKShell
+JKShell is a very basic shell written in C as a school project for one of the courses I had in 2018. It supports a number of internally-handled commands
+such as `path`, `path +`, `path -`, and `quit`, as well as arbitrary externally-handled commands which execute programs in a child process.
 
 Pipes, input and output file redirection are supported.
 
